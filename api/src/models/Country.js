@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
   sequelize.define('country', {
     id:{
       type: DataTypes.STRING,
-       allowNull: false,
+      allowNull: false,
       primaryKey: true,
       unique: true
     },
@@ -39,5 +39,5 @@ module.exports = (sequelize) => {
       allowNull: true
     }
   },
-  );
+  {timestamps: false});
 };

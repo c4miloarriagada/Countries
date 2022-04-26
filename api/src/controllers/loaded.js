@@ -30,20 +30,20 @@ const uploadCountries = async (Country) => {
      } catch (error) {
 
         console.log('Error al acceder a la informacion:', error)
-    }
+    };
 
-    function uploadCountry(country) {
-        try {
-            Country.findOrCreate({
-                where: {
-                    name: country.name
-                },
+function uploadCountry(country) {
+    try {
+        Country.findOrCreate({
+            where: {
+                name: country.name
+            },
                 defaults: country
             });
         } catch (error) {
             console.log(error);
         }
     }
-}
+};
 
 module.exports = uploadCountries

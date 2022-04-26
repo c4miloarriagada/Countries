@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const countriesRoute = require('./countries');
+const countriesRoute = require('./country');
 const activityRoute = require('./activity');
 
 
