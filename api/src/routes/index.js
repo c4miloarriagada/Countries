@@ -6,6 +6,6 @@ const activityRoute = require('./activity');
 
 
 router.use('/countries', countriesRoute)
-
+router.use('/activity', activityRoute)
 
 module.exports = router
