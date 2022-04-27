@@ -1,10 +1,30 @@
+const e = require('express');
 const express = require('express');
-const { Country, Activity } = require('../db')
+const { Country, Activity, Country_activities } = require('../db')
 const Model = require('../models/Activity')
 const router = express.Router()
 
-router.post('/', async (req, res) => {
 
+router.get('/', async (req, res) => {
+    try {
+        const findActivity = await Activity.findAll({
+            attributes: [
+                'id', 'name', 'duration', 'season', 'difficult'
+            ],
+            include: {
+                model: Country,
+                attributes: ['id', 'name', 'img']
+            }
+        })
+        return res.json(findActivity)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+
+
+
+router.post('/', async (req, res) => {
 
     const { name, difficult, duration } = req.body;
     const season = req.body.season.toLowerCase();
@@ -20,6 +40,7 @@ router.post('/', async (req, res) => {
 
     try {
 
+
         const findActivity = await Activity.findOne({
             where: {
                 name,
@@ -28,15 +49,14 @@ router.post('/', async (req, res) => {
                 season,
 
             },
-
-        })
+        });
 
         const findCountry = await Country.findOne({
             where: {
                 name: country
-            }
-        })
-       
+            },
+        });
+
         if (!findCountry) return res.send('Country doesnt exist')
         if (!findActivity) {
 
@@ -45,15 +65,41 @@ router.post('/', async (req, res) => {
             return res.status(201).json(createActivity)
         } else {
 
+            const compareActivitiesById = await Country_activities.findByPk(findCountry.dataValues.id)
+            if (compareActivitiesById) return res.status(400).send('The country already has the activity')
             findActivity.addCountry(findCountry)
             return res.status(201).json(findActivity)
         }
 
     } catch (error) {
-      return  res.status(404).send('error', error)
+        return res.status(404).send('error', error)
     }
 
 
+});
+
+
+
+
+router.delete('/:id', async (req, res) => { //delete all activities from id country
+    try {
+        const { name } = req.body
+        const id = req.params.id.toUpperCase()
+        const deleteActivities = await Country_activities.findByPk(id);
+        const activityDestroy = await Activity.findByPk(deleteActivities.dataValues.activityId);
+
+        if (activityDestroy.dataValues.name != name) return res.send(`Doesnt exist has any activity called ${name}`)
+        if (deleteActivities) {
+            activityDestroy.destroy()
+            return res.send('The Activity was deleted successfully')
+        }
+
+
+    } catch (error) {
+
+        res.status(400).send(`ID Country doesnt exist`)
+
+    }
 });
 
 

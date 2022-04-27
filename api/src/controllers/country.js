@@ -37,4 +37,5 @@ const getCountry =  async(req, res)=>{
   }
 
 
-  module.exports = {getCountry};
+  module.exports = {
+    getCountry};

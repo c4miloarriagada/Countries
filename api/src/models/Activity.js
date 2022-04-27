@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
     },
     duration:{
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
     },
     season:{
         type: DataTypes.ENUM({
