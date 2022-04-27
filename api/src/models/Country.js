@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     capital:{
-      type: DataTypes.STRING, //MACAO NO TIENE CAPITAL
+      type: DataTypes.STRING, 
       allowNull: false
     },
     subregion:{

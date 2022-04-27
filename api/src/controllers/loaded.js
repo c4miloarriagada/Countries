@@ -9,8 +9,8 @@ const uploadCountries = async (Country) => {
         let uploadedCountries = 0
         for (let i = 0; i < countriesInfo.length; i++) {
             const country = countriesInfo[i]
-            if (!country.capital) 
-                continue 
+            if (!country.capital)
+                continue
             const countryToAdd = {
                 id: country.cca3,
                 name: country.name.common,
@@ -27,17 +27,17 @@ const uploadCountries = async (Country) => {
         }
         console.log(`${uploadedCountries} Countries Added`)
 
-     } catch (error) {
+    } catch (error) {
 
         console.log('Error al acceder a la informacion:', error)
     };
 
-function uploadCountry(country) {
-    try {
-        Country.findOrCreate({
-            where: {
-                name: country.name
-            },
+    function uploadCountry(country) {
+        try {
+            Country.findOrCreate({
+                where: {
+                    name: country.name
+                },
                 defaults: country
             });
         } catch (error) {
