@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, FILTER_BY_CONTINENT, FILTER_ACTIVITY, ORDER_BY_NAME,GET_ACTIVITY , GET_POPULATION} from "../actions";
+import { GET_COUNTRIES, FILTER_BY_CONTINENT, FILTER_ACTIVITY, ORDER_BY_NAME,GET_ACTIVITY , GET_COUNTRY} from "../actions";
 
 
 
@@ -7,7 +7,8 @@ import { GET_COUNTRIES, FILTER_BY_CONTINENT, FILTER_ACTIVITY, ORDER_BY_NAME,GET_
 const initialState = {
     countries: [],
     allCountries: [],
-    activities:[]
+    activities:[],
+    country:[]
     
     
 }
@@ -21,11 +22,11 @@ function rootReducer(state = initialState, action) {
                 countries: action.payload,
                 allCountries: action.payload
             }
-        case GET_POPULATION:
+        case GET_COUNTRY:
             return{
                 ...state,
                 countries: action.payload,
-                allCountries: action.payload
+                country: action.payload
             }
         case GET_ACTIVITY:
                 return {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { getCountries, filterByContinents, filterActivity, orderByName, getActivities, getCountriesByPopulation } from "../actions";
+import { getCountries, filterByContinents, filterActivity, orderByName, getActivities } from "../actions";
 import { Link } from 'react-router-dom'
 import CountryCard from "./CountryCard";
 //import LisActivities from './LisActivities'

@@ -7,10 +7,10 @@ const ActivityCard = (activity) => {
     <div>
         {activity && (
             <div>
-            <p><strong>Activity</strong>{activity.name}</p>
-            <p><strong>Difficult</strong>{activity.difficult}</p>
-            <p><strong>Duration</strong>{activity.duration} Horas</p>
-            <p><strong>Season</strong>{activity.season}</p>
+            <p><strong>Activity : </strong>{activity.name}</p>
+            <p><strong>Difficult : </strong>{activity.difficult}</p>
+            <p><strong>Duration : </strong>{activity.duration} Horas</p>
+            <p><strong>Season : </strong>{activity.season}</p>
             </div>
 
         )}
