@@ -6,8 +6,8 @@ const router = express.Router()
 
 
 router.get('/', async (req, res) => {
-
   const { name } = req.query
+  const { order } = req.query
   try {
 
     if (name) {
@@ -24,20 +24,39 @@ router.get('/', async (req, res) => {
         return res.status(404).send('Country Doesnt Exists')
       }
       return res.json(queryCountry)
+      
+    }
+    if (order){
+      try {
+      const populationQuery = await Country.findAll({
+        
+          order : [['population', order]],
+          include: {
+              model: Activity,
+          }
+      })
+      return res.status(200).send(populationQuery)
+      } catch (error) {
+      return res.status(500).send('Error')
+      }
+  
+    
+  
     } else {
       const listCountry = await Country.findAll({
         order: [
           ['name', 'ASC']
         ],
-        attributes: [
-          'id', 'name', 'img', 'subregion', 'population', 'continent'
-        ],
+          include:{
+          model: Activity,
+        }
       })
       return res.send(listCountry)
     }
   } catch (error) {
     res.status(500).send('ERROR', error)
   }
+ 
 });
 
 

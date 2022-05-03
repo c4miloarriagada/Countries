@@ -14,7 +14,7 @@ const uploadCountries = async (Country) => {
             const countryToAdd = {
                 id: country.cca3,
                 name: country.name.common,
-                img: country.flags[0],
+                img: country.flags[1],
                 continent: country.region,
                 capital: country.capital[0],
                 subregion: country.subregion,

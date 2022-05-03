@@ -1,0 +1,36 @@
+.button {
+    transition-duration: 0.4s;
+    border-radius: 15px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: #d9be29; 
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 15px 32px;
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+.button:hover{
+    cursor: pointer;
+    background-color: rgb(1, 20, 1);
+    color: white;
+}
+.select { /*hide original SELECT element: */
+   
+    
+
+  align-items: center;
+  text-align: center;
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;  
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}

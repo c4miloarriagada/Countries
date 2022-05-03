@@ -1,4 +1,3 @@
-const e = require('express');
 const express = require('express');
 const { Country, Activity, Country_activities } = require('../db')
 const Model = require('../models/Activity')
@@ -8,25 +7,23 @@ const router = express.Router()
 router.get('/', async (req, res) => {
     try {
         const findActivity = await Activity.findAll({
-            attributes: [
-                'id', 'name', 'duration', 'season', 'difficult'
-            ],
             include: {
                 model: Country,
-                attributes: ['id', 'name', 'img']
+                
             }
         })
         return res.json(findActivity)
     } catch (error) {
         res.status(400).send(error)
     }
-})
+});
 
 
 
 router.post('/', async (req, res) => {
 
-    const { name, difficult, duration } = req.body;
+    const { difficult, duration } = req.body;
+    const name = req.body.name.toLowerCase()
     const season = req.body.season.toLowerCase();
     const country = req.body.country[0].toUpperCase().concat(req.body.country.slice(1).toLowerCase());
     const seasons = ['summer', 'autumn', 'spring', 'winter'];
@@ -63,6 +60,7 @@ router.post('/', async (req, res) => {
             const createActivity = await Activity.create({ name, difficult, duration, country, season })
             createActivity.addCountry(findCountry);
             return res.status(201).json(createActivity)
+
         } else {
 
             const compareActivitiesById = await Country_activities.findByPk(findCountry.dataValues.id)
@@ -75,29 +73,65 @@ router.post('/', async (req, res) => {
         return res.status(404).send('error', error)
     }
 
-
 });
 
+/*
+router.put('/:id', async(req, res)=>{
+    const id = req.params.id.toUpperCase()
+    const {name, difficult,duration, season } = req.body
+    const findId = await Country_activities.findByPk(id)
+    const putActivity = await Activity.findByPk(findId.dataValues.activityId) 
+    
+   try {
+    if(putActivity){
+        await putActivity.setActivity({name, difficult,duration, season })
+        return res.json(putActivity)
+        }
+   } catch (error) {
+       return res.status(400).send(error)
+   }
+   
+
+})*/
 
 
 
-router.delete('/:id', async (req, res) => { //delete all activities from id country
+router.delete('/:id', async (req, res) => { //delete activity that match with the name and id country
+    
     try {
-        const { name } = req.body
+        
+        const name = req.body.name.toLowerCase()
         const id = req.params.id.toUpperCase()
-        const deleteActivities = await Country_activities.findByPk(id);
-        const activityDestroy = await Activity.findByPk(deleteActivities.dataValues.activityId);
-
-        if (activityDestroy.dataValues.name != name) return res.send(`Doesnt exist has any activity called ${name}`)
+      
+        const activityDestroy = await Activity.findOne({
+            where:{
+                name : name
+            }
+        });
+      
+        const deleteActivities = await Country_activities.findOne({
+            where:{
+                countryId: id
+                
+            },
+            
+        });
+     
+        
+        if (activityDestroy && !deleteActivities) return res.status(400).send(`Doesnt exist has any activity called ${name} related with the id: ${id}`)
+       
         if (deleteActivities) {
-            activityDestroy.destroy()
+            deleteActivities.destroy({
+                where:{
+                    countryId : id
+                }
+            })
             return res.send('The Activity was deleted successfully')
         }
 
-
     } catch (error) {
 
-        res.status(400).send(`ID Country doesnt exist`)
+        return res.status(500).json({ Server_Status: `ID Country doesnt has any activity or is invalid` })
 
     }
 });
