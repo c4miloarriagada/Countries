@@ -20,8 +20,8 @@ const CountryDetails = () => {
   return (
     <div>
         <div>
-            <Link to='/home'>
-                <button> Home </button>
+        <Link to="/home">
+                <button> Back to home </button>
             </Link>
         </div>
         <img src={country.img} alt={country.name}/>
@@ -37,6 +37,7 @@ const CountryDetails = () => {
             difficult={e.difficult}
             duration={e.duration}
             season={e.season}
+            key={e.id}
         /> )}
 
 

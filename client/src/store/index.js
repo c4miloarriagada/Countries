@@ -5,7 +5,7 @@ import rootReducer from '../reducer/index'
 
 
 const store = configureStore({
-                reducer:rootReducer, 
+               reducer:rootReducer, 
                composeWithDevTools:composeWithDevTools(applyMiddleware(thunk))
             })
 
