@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 //import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCountries, postActivity } from '../actions/index'
+import styles from './CreateActivity.module.css'
 
 
 const CreateActivity = () => {
@@ -103,20 +104,20 @@ const CreateActivity = () => {
 
 
     return (
-        <div  >
-            <div >
-                <Link to='/home'>
-                    <button >Home</button>
-                </Link>
+        <div className={styles.page}  >
+           <div className={styles.nav}>
+            <li className={styles.li}><Link to='/home'> Go Home</Link></li>
             </div>
-            <h1 >Create Activity</h1>
+            <h1 className={styles.h1} >Create Activity 🏄‍♂️</h1>
+            <div className={styles.container}> 
+
             <form
-                onSubmit={(e) => handleSubmit(e)}>
+                onSubmit={(e) => handleSubmit(e)} className={styles.form}>
                 <div >
                     <div >
                         <label > Name of activity : </label>
                         <input
-                            placeholder='Activity...'
+                            placeholder='Activity'
                             type='text'
                             value={input.name}
                             name='name'
@@ -132,7 +133,7 @@ const CreateActivity = () => {
                                 name='difficult'
                                 onChange={e => handleCheckBox(e)}/>
                                 
-                            Very Easy</label>
+                            1</label>
                         <label>
                             <input
                                 type='radio'
@@ -140,7 +141,7 @@ const CreateActivity = () => {
                                 name='difficult'
                                 onChange={e => handleCheckBox(e)}
                             />
-                            Easy</label>
+                            2</label>
                         <label>
                             <input
                                 type='radio'
@@ -148,7 +149,7 @@ const CreateActivity = () => {
                                 name='difficult'
                                 onChange={e => handleCheckBox(e)}
                             />
-                            Medium</label>
+                            3</label>
                         <label>
                             <input
                                 type='radio'
@@ -156,7 +157,7 @@ const CreateActivity = () => {
                                 name='difficult'
                                 onChange={e => handleCheckBox(e)}
                             />
-                           Hard</label>
+                           4</label>
                         <label>
                             <input
 
@@ -165,12 +166,12 @@ const CreateActivity = () => {
                                 name='difficult'
                                 onChange={e => handleCheckBox(e)}
                             />
-                            Challenging</label>
+                            5</label>
                     </div>
                     <div >
                         <label>Duration : </label>
                         <input
-                            placeholder= 'For how long?...'
+                            placeholder= 'Time in hours'
                             type='number'
                             value={input.duration}
                             name='duration'
@@ -231,17 +232,18 @@ const CreateActivity = () => {
                     </div>
                     {input.country.map((e) =>
                         <div >
-                            <p >{e}</p>
-                            <button
+                            <p className={styles.element} >{e}</p>
+                            <button className={styles.button}
                                 type='button'
                                 onClick={() => handleDelete(e)}>X</button>
                         </div>
                     )}
-                    <div>
+                    <div >
                         <input type='submit' value='Create'/>
                     </div>
                 </div>
             </form>
+            </div>
         </div>
     )
 }

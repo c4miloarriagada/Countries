@@ -77,7 +77,7 @@ function Home() {
                  {/* <li className={styles.li}><Link to={'/home'}> Home </Link> </li> */}
                 <li className={styles.li}> <button type='button'onClick={() => HandleReload()}>Refresh</button></li> 
                 <li className={styles.li}><Nav/> </li>
-                <li className={styles.li}><Link to='/activity'> Make your activity</Link></li>
+                <li className={styles.li}><Link to='/activity'> Create activity</Link></li>
                 <li className={styles.li}><Link to='/About'> About </Link></li>
                <div className={styles.mov}> 
                 <select onChange={e => populationOrder(e)} className={styles.select}>
@@ -117,7 +117,7 @@ function Home() {
                 </div>
             </div>
             <div> 
-            <h1 className={styles.h1}>  Countries of World! 🌎   </h1>
+            <h1 className={styles.h1}>  Countries Of The World! 🌎   </h1>
             { loading? <img src= '../assets/giphy.gif' alt = 'Loading...'/>:
                 <ul className={styles.container}>
 
@@ -134,14 +134,14 @@ function Home() {
                 </ul>
             }
             </div>
-            <p className={styles.paginated}>
+            <div className={styles.paginated}>
 
             <Paginated
             countriesPerPage={countriesPerPage}
             allCountries={allCountries.length}
             paginated={paginated} />
 
-            </p>
+            </div>
         </div>
     )
 }

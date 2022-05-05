@@ -11,7 +11,7 @@ const NotFound = () => {
         </button>
             </Link>
         <h1 className={styles.title}>404 Not Found</h1>
-        <h3 className={styles.title}>Houston Nothing to do here 🚀</h3>
+        <h3 className={styles.title}>Houston, Nothing to do here 🚀</h3>
         </div>
   )
 }
