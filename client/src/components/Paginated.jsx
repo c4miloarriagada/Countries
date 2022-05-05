@@ -11,8 +11,7 @@ const Paginated = ({ countriesPerPage, allCountries, paginated }) => {
     return (
         <nav className={styles.pages}>
             <ul className={styles.paginated}>
-                {pageNumbers
-                    && pageNumbers.map(number => (
+                { pageNumbers?.map(number => (
                         <li className={styles.numbers} key={number}>
 
                             <button onClick={() => paginated(number)} className={styles.number}>{number}</button>

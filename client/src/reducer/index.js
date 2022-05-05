@@ -62,7 +62,7 @@ function rootReducer(state = initialState, action) {
                 countries: activitiesFilter
             }
         case ORDER_BY_NAME:
-            let sortCountries = action.payload === 'asc'
+            const sortCountries = action.payload === 'asc'
                 ? state.countries.sort((a, b) => a.name.localeCompare(b.name))
                 : state.countries.sort((a, b) => b.name.localeCompare(a.name))
             console.log(sortCountries)

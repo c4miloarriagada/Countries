@@ -17,7 +17,7 @@ function Home() {
     const activities = useSelector((state) => state.activities)
     const [order, setOrder] = useState('')
     //const [, setRefreshState] = useState(false) 
-    //const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1);
     const [countriesPerPage, /*setCountriesPerPage*/] = useState(10);
     const indexOfLastCountry = currentPage * countriesPerPage;
@@ -25,10 +25,10 @@ function Home() {
     const currentCountry = allCountries.slice(indexOfFirstCountry, indexOfLastCountry)
 
     useEffect(() => {
-
+        setLoading(true)
         dispatch(getCountries(order));
         dispatch(getActivities())
-    
+        setLoading(false)
     }, [dispatch, order])
 
     function populationOrder(e) {
@@ -57,6 +57,7 @@ function Home() {
         e.preventDefault()
         dispatch(orderByName(e.target.value));
         setCurrentPage(1)
+        setOrder(e.target.value)
     }
 
     const paginated = (pageNumber) => {
@@ -68,20 +69,18 @@ function Home() {
       };
 
     return (
-
+        
 
         <div className={styles.page}>
             <header>
-                <Link to='/home/'>
-                    <h1 className={styles.h1}>  Countries of World! 🌎   </h1>
-                </Link>
-                <Link to='/activity'> Make your own Activity </Link>
+                <ul className={styles.ul}>
+                <li className={styles.li}><Nav/> </li>
+                <li className={styles.li}><Link to='/home'> Home </Link> </li>
+                <li className={styles.li}><Link to='/activity'> Make your own Activity</Link></li>
+                </ul>
+                <h1 className={styles.h1}>  Countries of World! 🌎   </h1>
+                
                </header>
-            
-            <div>  <button onClick={HandleReload}>
-                    Home 
-                </button></div>
-                <Nav/>
             <div>
                 <div>
               
@@ -105,16 +104,16 @@ function Home() {
                         <option value='Oceania'>Oceania</option>
                     </select>
                     <select onChange={e => handleFilterByActivity(e)} className={style.select}>
-                        <option value='All'>All Activities</option>
+                        <option hidden>All Activities</option>
                         {activities?.map(e => (
                             <option value={e.name}
-                                key={e.id}> {e.name} </option>
+                                    key={e.id}> {e.name} </option>
                         ))}
                     </select>
                 </div>
             </div>
 
-            {  //loading? <img src= '../assets/giphy.gif' alt = 'Loading...'/>:
+            { loading? <img src= '../assets/giphy.gif' alt = 'Loading...'/>:
                 <ul className={styles.container}>
 
                     {currentCountry?.map(e => (

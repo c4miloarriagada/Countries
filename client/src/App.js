@@ -4,6 +4,7 @@ import LandingPage from './components/LandingPage'
 import Home from './components/Home'
 import CountryDetails from './components/CountryDetails'
 import CreateActivity from './components/CreateActivity';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
      <Route exact path ='/' element={<LandingPage/>}/>
      <Route exact path = '/home/' element={<Home/>}/>
      <Route path='/home/:countryId' element={<CountryDetails/>}/>
-     <Route path= '/activity' element={<CreateActivity/>}></Route>
+     <Route path= '/activity' element={<CreateActivity/>}/>
+     <Route path= '*' element={<NotFound/>}/>
 
     </Routes>
  
