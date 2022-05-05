@@ -74,27 +74,23 @@ function Home() {
         <div className={styles.page}>
             <header>
                 <ul className={styles.ul}>
+                 {/* <li className={styles.li}><Link to={'/home'}> Home </Link> </li> */}
+                <li className={styles.li}> <button type='button'onClick={() => HandleReload()}>Refresh</button></li> 
                 <li className={styles.li}><Nav/> </li>
-                <li className={styles.li}><Link to='/home'> Home </Link> </li>
-                <li className={styles.li}><Link to='/activity'> Make your own Activity</Link></li>
-                </ul>
-                <h1 className={styles.h1}>  Countries of World! 🌎   </h1>
-                
-               </header>
-            <div>
-                <div>
-              
-                    <select onChange={e => populationOrder(e)} className={style.select}>
+                <li className={styles.li}><Link to='/activity'> Make your activity</Link></li>
+                <li className={styles.li}><Link to='/About'> About </Link></li>
+               <div className={styles.mov}> 
+                <select onChange={e => populationOrder(e)} className={styles.select}>
                         <option hidden>  Order by population     </option>
                         <option value='DESC' >  Ascendent </option>
                         <option value='ASC'>  Descendant </option>
                     </select>
-                    <select onChange={e => handleSort(e)} className={style.select}>
+                    <select onChange={e => handleSort(e)}className={styles.select}>
                         <option hidden>    Order by name        </option>
                         <option value='asc' >  A-Z </option>
                         <option value='desc'>  Z-A </option>
                     </select>
-                    <select onChange={e => handleFilterByContinent(e)} className={style.select}>
+                    <select onChange={e => handleFilterByContinent(e)}className={styles.select}>
                         <option value='All'>All Continents</option>
                         <option value='Africa'>Africa</option>
                         <option value='Americas'>America</option>
@@ -103,16 +99,25 @@ function Home() {
                         <option value='Europe'>Europa</option>
                         <option value='Oceania'>Oceania</option>
                     </select>
-                    <select onChange={e => handleFilterByActivity(e)} className={style.select}>
+                    
+                    <select onChange={e => handleFilterByActivity(e)}className={styles.select}>
                         <option hidden>All Activities</option>
                         {activities?.map(e => (
                             <option value={e.name}
                                     key={e.id}> {e.name} </option>
                         ))}
                     </select>
+                    </div>
+                </ul>
+                </header>
+            <div>
+                <div className={styles.customselect}>
+              
+                   
                 </div>
             </div>
-
+            <div> 
+            <h1 className={styles.h1}>  Countries of World! 🌎   </h1>
             { loading? <img src= '../assets/giphy.gif' alt = 'Loading...'/>:
                 <ul className={styles.container}>
 
@@ -128,10 +133,15 @@ function Home() {
                     ))}
                 </ul>
             }
+            </div>
+            <p className={styles.paginated}>
+
             <Paginated
-                countriesPerPage={countriesPerPage}
-                allCountries={allCountries.length}
-                paginated={paginated} />
+            countriesPerPage={countriesPerPage}
+            allCountries={allCountries.length}
+            paginated={paginated} />
+
+            </p>
         </div>
     )
 }

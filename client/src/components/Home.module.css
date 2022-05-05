@@ -1,3 +1,13 @@
+.container {
+    color:  rgba(255, 255, 255, 0.956);
+    margin: auto;
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content:flex-start;
+    text-decoration: none;
+}
 .page{
     
     background: url('../assets/pexels-pixabay-220201.jpg');
@@ -13,26 +23,21 @@
     top: 10;
     left: 0;
 }
-.container{
-    display: flex;
-    flex-wrap: wrap;
-    width: 90%;
-   justify-content: space-around;
-}
+
+
 
 .h1{
     text-align: center;
-    color: rgba(255, 255, 255, 0.956);
-    margin-top: 70px;
-    font-size: 50px;
-    color: rgb(255, 255, 255);
+    color: #ccc;
+    font-size: 70px;
+   
 }
 .ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #365b77;
 }
 .li{
     float: left;
@@ -40,7 +45,7 @@
 }
 .li a {
     display: block;
-    color: white;
+    color: #ccc;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -62,13 +67,40 @@
     
   }
   .li  button {
+      color: #ccc;
     float: right;
     padding: 6px 10px;
     margin-top: 8px;
     margin-right: 3px;
-    background: #ddd;
+    margin-left: px;
+    background: #365b77;
     font-size: 17px;
     border: none;
     cursor: pointer;
-    background: #ccc;
+   
   }
+.select{
+   color: #ccc;
+   background: #365b77;
+   float: right;
+   justify-content: space-between;
+   float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 3px;
+    margin-left: px;
+
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  
+
+}
+.select:after{
+   
+  border-color: #fff transparent transparent transparent;
+}
+.paginated{
+   text-align: center;
+   
+}

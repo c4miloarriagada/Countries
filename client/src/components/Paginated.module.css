@@ -17,21 +17,24 @@
     cursor: pointer;
 }
 
-.numbers:hover{
-    border: 1px solid #211C42;
-    box-shadow: 0 0 5px #211C42;
-}
 
 .number{
-    display: block;
+    color: #ccc;
+    display:inline-block;
     width: 30px;
     height: 30px;
     align-content: center;
     text-align: center;
     justify-content: center;
     gap:10px;
+    background-color: #365b77;
+    border-radius: 5px;
+
+}
+.number:hover{
+    cursor: pointer;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    transform: scale(1.40);
 }
 
-.pages{
-    flex: auto;
-}
