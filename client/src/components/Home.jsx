@@ -8,9 +8,10 @@ import CountryCard from "./CountryCard";
 import styles from './Home.module.css';
 import Paginated from "./Paginated";
 import Nav from './Nav'
-import style from './Button.module.css'
+import giphy from '../assets/giphy.gif'
 
-function Home() {
+
+export default function Home() {
 
     const dispatch = useDispatch();
     const allCountries = useSelector((state) => state.countries);
@@ -25,10 +26,10 @@ function Home() {
     const currentCountry = allCountries.slice(indexOfFirstCountry, indexOfLastCountry)
 
     useEffect(() => {
-        setLoading(true)
         dispatch(getCountries(order));
         dispatch(getActivities())
         setLoading(false)
+        
     }, [dispatch, order])
 
     function populationOrder(e) {
@@ -62,7 +63,25 @@ function Home() {
 
     const paginated = (pageNumber) => {
         setCurrentPage(pageNumber)
+
     }
+    const setPageOne = ()=>{
+      
+         setCurrentPage(1)
+
+    }
+    
+    // const nextPage = ()=>{
+    //    if (currentPage < Math.ceil(allCountries.length / countriesPerPage)){
+    //          setCurrentPage(currentPage + 1)
+    //     }
+    //  }
+    //  const prevPage = ()=>{
+    //      if(currentPage - 1 !== 0){
+    //          setCurrentPage(currentPage - 1)
+    //      }
+    //  }
+    
 
     const HandleReload = () => {
         window.location.reload();
@@ -75,10 +94,10 @@ function Home() {
             <header>
                 <ul className={styles.ul}>
                  {/* <li className={styles.li}><Link to={'/home'}> Home </Link> </li> */}
-                <li className={styles.li}> <button type='button'onClick={() => HandleReload()}>Refresh</button></li> 
-                <li className={styles.li}><Nav/> </li>
-                <li className={styles.li}><Link to='/activity'> Create activity</Link></li>
-                <li className={styles.li}><Link to='/About'> About </Link></li>
+                <li className={styles.li}> <button type='button'onClick={() => HandleReload()}>Refresh </button></li> 
+                <li className={styles.li} onChange={() =>setPageOne()}><Nav/></li>
+                <li className={styles.li}><Link to='/activity'> Create activity 🏄‍♂️</Link></li>
+                <li className={styles.li}><Link to='/About'> About 💻</Link></li>
                <div className={styles.mov}> 
                 <select onChange={e => populationOrder(e)} className={styles.select}>
                         <option hidden>  Order by population     </option>
@@ -118,7 +137,7 @@ function Home() {
             </div>
             <div> 
             <h1 className={styles.h1}>  Countries Of The World! 🌎   </h1>
-            { loading? <img src= '../assets/giphy.gif' alt = 'Loading...'/>:
+            { loading? <img src= {giphy} alt = 'Loading...'/>:
                 <ul className={styles.container}>
 
                     {currentCountry?.map(e => (
@@ -135,15 +154,13 @@ function Home() {
             }
             </div>
             <div className={styles.paginated}>
-
+         
             <Paginated
             countriesPerPage={countriesPerPage}
             allCountries={allCountries.length}
             paginated={paginated} />
-
+          
             </div>
         </div>
     )
 }
-
-export default Home

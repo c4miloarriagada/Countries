@@ -1,7 +1,7 @@
 .page{
-    
+   
     background: url('../assets/pexels-pixabay-220201.jpg');
-     min-height: 100%;
+    min-height: 100%;
     min-width: 1024px;
     width: 100%;
     height: auto;
@@ -10,17 +10,18 @@
     top: 10;
     left: 0;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
+   text-align: center;
+   
 }
-
-.nav {
+.nav{
+   
     list-style-type: none;
     margin: 0;
     padding: 0px;
     overflow: hidden;
     background-color: #365b77;
+    
 }
-
 .li {
     float: left;
   
@@ -46,45 +47,10 @@
     text-align: center;
     color: #ccc;
     font-size: 70px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-.form{
-    text-align: center;
-    margin: 100px 0px 0px 0px;
-    font-size: 30px;
-    padding: 20px;
-    text-shadow: 2px 0 0 rgb(25, 24, 24), -2px 0 0 rgb(25, 24, 24), 0 2px 0 rgb(25, 24, 24), 0 -2px 0 rgb(25, 24, 24), 1px 1px rgb(25, 24, 24), -1px -1px 0 rgb(25, 24, 24), 1px -1px 0 rgb(25, 24, 24), -1px 1px 0 rgb(25, 24, 24);
-    
-}
-.form input{
-    padding: 6px;
-    border: none;
-    margin-top: 8px;
-    margin-right: 16px;
-    font-size: 15px;
-    border: 1px solid #ccc;
-    
-    outline: #365b77;
-    border-radius: 10px;
-    cursor: pointer;
-
-}
-.form input:hover{
-    background-color: #111;
-    background-color: #ddd;
-    color: black;
-}
-.form select{
-    padding: 6px;
-    border: none;
-    margin-top: 8px;
-    margin-right: 16px;
-    font-size: 15px;
-    border: 1px solid #ccc;
-  
-    outline: #365b77;
-    cursor: pointer;
-    border-radius: 10px;
+.p{
+    color:#ccc;
+    font-size: 40px;
 }
 .container{
     color: #ccc;
@@ -99,18 +65,13 @@
     text-decoration: none;
     border-radius: 20px;
     opacity: 0.90;
-  
-    
-    
-}
-.button{
-    
     cursor: pointer;
-    background-color: rgb(252, 249, 27);
-    border-radius: 5px;
-
 }
-.element{
-    text-align: left;
-    justify-content: space-around;
+.container:hover{
+   
+        border-bottom-right-radius: 60px;
+        border-top-left-radius: 60px;
+        transform: scale(1.05);
+      
+        
 }

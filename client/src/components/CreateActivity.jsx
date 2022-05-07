@@ -81,10 +81,10 @@ const CreateActivity = () => {
     function validate(input){
         let error = {};
         if(input.name.length === 0){
-            error.name = 'Name of activity is required'
+            error.name = 'Activity name is required'
         }
         if(!input.duration){
-            error.duration = 'Duration must be declared in hours'
+            error.duration = 'Duration must be specified in hours'
         }
         if(!input.season){
             error.season = 'Season is required'
@@ -93,7 +93,7 @@ const CreateActivity = () => {
             error.difficult = 'Difficult is required'
         }
         if(input.country.length === 0){
-            error.country = 'Must be included at least 1 country'
+            error.country = 'At least one country must be selected'
         }
         return error
     }
@@ -115,7 +115,7 @@ const CreateActivity = () => {
                 onSubmit={(e) => handleSubmit(e)} className={styles.form}>
                 <div >
                     <div >
-                        <label > Name of activity : </label>
+                        <label > Name of the activity : </label>
                         <input
                             placeholder='Activity'
                             type='text'
@@ -183,7 +183,7 @@ const CreateActivity = () => {
                         <label>
                             <input
                                 type='radio'
-                                value='summer'
+                                value='Summer'
                                 name='season'
                                 onChange={e => handleCheckBox(e)}
                             />
@@ -191,7 +191,7 @@ const CreateActivity = () => {
                         <label>
                             <input
                                 type='radio'
-                                value='spring'
+                                value='Spring'
                                 name='season'
                                 onChange={e => handleCheckBox(e)}
                             />
@@ -199,15 +199,15 @@ const CreateActivity = () => {
                         <label>
                             <input
                                 type='radio'
-                                value='autumn'
+                                value='Fall'
                                 name='season'
                                 onChange={e => handleCheckBox(e)}
                             />
-                            Autumn</label>
+                            Fall</label>
                         <label>
                             <input
                                 type="radio"
-                                value='winter'
+                                value='Winter'
                                 name='season'
                                 onChange={e => handleCheckBox(e)}
                             />
@@ -218,11 +218,11 @@ const CreateActivity = () => {
                         <label >Country : </label>
                         <div >
                              <select
-                                onChange={(e) => handleSelect(e)} >
-                                {country?.map((e) => (
+                                onChange={(e ) => handleSelect(e)} >
+                                {country?.map((e, index) => (
                                     <option
                                     value= {e.name}
-                                    key={e.id} 
+                                    key={country.id} 
                                     >{e.name}
                                     </option>
                                 ))}

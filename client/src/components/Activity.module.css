@@ -1,9 +1,29 @@
-.activity{
-    
-    margin: -360px -170px 360px -100px;
-    text-align: right;
-    font-size: 15px;
-    
+.container{
+  display: grid;
+  color: #ccc;
+  width: 200px;
+  height: 210px;
+  background-color: #365b77;
+  box-shadow: 7px 7px 15px #191919,
+  7px 7px 15px #292929;
+  transition: border-radius cubic-bezier(0.075, 0.82, 0.165, 1) 1s,
+  transform cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
+  padding: 10px;
+  text-align: center;
+  text-decoration:none;
+  margin: -700px 1150px 710px;
+  border-radius: 20px;
+  font-size: 20px;
+  opacity: 0.9;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.inline-container{
+  display: -ms-inline-grid;
+}
 
-    
+.container:hover {
+  border-bottom-right-radius: 60px;
+  border-top-left-radius: 60px;
+  transform: scale(1.05);
+  cursor: pointer;
 }
