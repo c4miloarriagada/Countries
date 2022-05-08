@@ -1,13 +1,13 @@
 import { React, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { getCountryByName } from '../actions/index'
+//import { useDispatch } from 'react-redux'
+//import { getCountryByName } from '../actions/index'
 
 
 export default function Nav({onSearch}) {
 
 
     const [name, setName] = useState('')
-    const dispatch = useDispatch()
+    //const dispatch = useDispatch()
 
 
 

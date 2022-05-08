@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { getCountries, filterByContinents, filterActivity, orderByName, getActivities, getCountryByName } from "../actions";
+import { getCountries, 
+         filterByContinents,  
+         filterActivity,  
+         orderByName,  
+         getActivities,  
+         getCountryByName } from "../actions";
 import { Link } from 'react-router-dom'
 import CountryCard from "./CountryCard";
-//import LisActivities from './LisActivities'
 import styles from './Home.module.css';
 import Paginated from "./Paginated";
 import Nav from './Nav'
+//import LisActivities from './LisActivities'
 //import giphy from '../assets/giphy.gif'
 
 
@@ -27,8 +32,7 @@ export default function Home() {
 
     useEffect(() => {
         dispatch(getCountries(order));
-        dispatch(getActivities())
-        
+        dispatch(getActivities())      
     }, [dispatch, order])
 
     function populationOrder(e) {
@@ -40,7 +44,6 @@ export default function Home() {
         e.preventDefault()
         dispatch(filterByContinents(e.target.value));
         setCurrentPage(1)
-
     }
 
     function handleFilterByActivity(e) {
@@ -48,8 +51,6 @@ export default function Home() {
         dispatch(filterActivity(e.target.value));
         setCurrentPage(1)
         setOrder()
-
-
     }
 
     function handleSort(e) {
@@ -74,19 +75,22 @@ export default function Home() {
 
     }*/
     
-    // const nextPage = ()=>{
-    //    if (currentPage < Math.ceil(allCountries.length / countriesPerPage)){
-    //          setCurrentPage(currentPage + 1)
-    //     }
-    //  }
-    //  const prevPage = ()=>{
-    //      if(currentPage - 1 !== 0){
-    //          setCurrentPage(currentPage - 1)
+    //  const nextPage = ()=>{
+    //     if (currentPage < Math.ceil(allCountries.length / countriesPerPage)){
+    //           setCurrentPage(currentPage + 1)
     //      }
-    //  }
-    // if(currentCountry && loading){
-    //     setLoading(false)
-    // }  
+    //   }
+    //   const prevPage = ()=>{
+    //       if(currentPage - 1 !== 0){
+    //           setCurrentPage(currentPage - 1)
+    //       }
+    //   }
+
+    //   console.log(allCountries.length/countriesPerPage)
+
+    //  if(currentCountry && loading){
+    //   setLoading(false)
+    //  }  
 
     const handleReload = () => {
         window.location.reload();
@@ -104,7 +108,7 @@ export default function Home() {
                 <li className={styles.li}><Nav onSearch={handleSearch} /></li>
                 <li className={styles.li}><Link to='/activity'> Create activity 🏄‍♂️</Link></li>
                 <li className={styles.li}><Link to='/About'> About 💻</Link></li>
-               <div className={styles.mov}> 
+                <div className={styles.mov}> 
                 <select onChange={e => populationOrder(e)} className={styles.select}>
                         <option hidden>  Order by population     </option>
                         <option value='DESC' >  Ascendent </option>
@@ -162,13 +166,11 @@ export default function Home() {
             
             </div>
             <div className={styles.paginated}>
-         
             <Paginated
             countriesPerPage={countriesPerPage}
             allCountries={allCountries.length}
-            paginated={paginated} />
-          
-            </div>
+            paginated={paginated}/>
+          </div>
         </div>
     )
 }
