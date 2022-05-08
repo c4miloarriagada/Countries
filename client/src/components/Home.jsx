@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { getCountries, filterByContinents, filterActivity, orderByName, getActivities } from "../actions";
+import { getCountries, filterByContinents, filterActivity, orderByName, getActivities, getCountryByName } from "../actions";
 import { Link } from 'react-router-dom'
 import CountryCard from "./CountryCard";
 //import LisActivities from './LisActivities'
 import styles from './Home.module.css';
 import Paginated from "./Paginated";
 import Nav from './Nav'
-import giphy from '../assets/giphy.gif'
+//import giphy from '../assets/giphy.gif'
 
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
     const activities = useSelector((state) => state.activities)
     const [order, setOrder] = useState('')
     //const [, setRefreshState] = useState(false) 
-    const [loading, setLoading] = useState(true)
+    //const [loading, setLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1);
     const [countriesPerPage, /*setCountriesPerPage*/] = useState(10);
     const indexOfLastCountry = currentPage * countriesPerPage;
@@ -28,7 +28,6 @@ export default function Home() {
     useEffect(() => {
         dispatch(getCountries(order));
         dispatch(getActivities())
-        setLoading(false)
         
     }, [dispatch, order])
 
@@ -36,7 +35,6 @@ export default function Home() {
         e.preventDefault()
         setOrder(e.target.value)
     }
-
 
     function handleFilterByContinent(e) {
         e.preventDefault()
@@ -65,11 +63,16 @@ export default function Home() {
         setCurrentPage(pageNumber)
 
     }
-    const setPageOne = ()=>{
-      
-         setCurrentPage(1)
 
+    const handleSearch=(value)=>{
+        dispatch(getCountryByName(value));
+        setCurrentPage(1)
     }
+
+   /* const setPageOne = (e)=>{
+      setCurrentPage(1)
+
+    }*/
     
     // const nextPage = ()=>{
     //    if (currentPage < Math.ceil(allCountries.length / countriesPerPage)){
@@ -81,11 +84,14 @@ export default function Home() {
     //          setCurrentPage(currentPage - 1)
     //      }
     //  }
-    
+    // if(currentCountry && loading){
+    //     setLoading(false)
+    // }  
 
-    const HandleReload = () => {
+    const handleReload = () => {
         window.location.reload();
       };
+
 
     return (
         
@@ -94,8 +100,8 @@ export default function Home() {
             <header>
                 <ul className={styles.ul}>
                  {/* <li className={styles.li}><Link to={'/home'}> Home </Link> </li> */}
-                <li className={styles.li}> <button type='button'onClick={() => HandleReload()}>Refresh </button></li> 
-                <li className={styles.li} onChange={() =>setPageOne()}><Nav/></li>
+                <li className={styles.li}> <button type='button'onClick={() => handleReload()}>Refresh </button></li> 
+                <li className={styles.li}><Nav onSearch={handleSearch} /></li>
                 <li className={styles.li}><Link to='/activity'> Create activity 🏄‍♂️</Link></li>
                 <li className={styles.li}><Link to='/About'> About 💻</Link></li>
                <div className={styles.mov}> 
@@ -137,10 +143,11 @@ export default function Home() {
             </div>
             <div> 
             <h1 className={styles.h1}>  Countries Of The World! 🌎   </h1>
-            { loading? <img src= {giphy} alt = 'Loading...'/>:
+           
                 <ul className={styles.container}>
 
-                    {currentCountry?.map(e => (
+                    {/*loading ? <img src={giphy} alt='Loading' className={styles.gif} width='500px' height='500px'/>:*/
+                    currentCountry?.map(e => (
                         <CountryCard
                             name={e.name}
                             continent={e.continent}
@@ -148,10 +155,11 @@ export default function Home() {
                             subregion={e.subregion}
                             id={e.id}
                             key={e.id}
-                        />
-                    ))}
+                    />
+                    ))
+                }
                 </ul>
-            }
+            
             </div>
             <div className={styles.paginated}>
          

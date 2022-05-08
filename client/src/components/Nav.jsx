@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { getCountryByName } from '../actions/index'
 
 
-export default function Nav() {
+export default function Nav({onSearch}) {
 
 
     const [name, setName] = useState('')
@@ -15,12 +15,16 @@ export default function Nav() {
         e.preventDefault();
         setName(e.target.value)
     }
-    function handleOnSubmit(e) {
+    const handleOnSubmit = (e)=>{
+        e.preventDefault()
+        onSearch(name)
+    }
+  /*  function handleOnSubmit(e) {
         e.preventDefault();
         dispatch(getCountryByName(name))
         setName('')
 
-    }
+   }*/
 
     return (
         <form onSubmit={e => handleOnSubmit(e)}>
@@ -29,7 +33,8 @@ export default function Nav() {
                 <input
                     type='text'
                     placeholder='Find your country'
-                    onChange={e => handleInputChange(e)}
+                    value={name}
+                    onChange={handleInputChange}
                 />
                 <button type='submit'> Search 🔍</button>
             </div>

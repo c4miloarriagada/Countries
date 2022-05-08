@@ -53,7 +53,7 @@ const CreateActivity = () => {
 
     function handleSubmit(e) {
          console.log(input)
-         if (!input.name || !input.difficult || !input.duration || !input.season || input.country.length === 0) {
+         if (!input.name || !input.difficult || !input.duration || !input.season || input.country.length === 0 ) {
              e.preventDefault()
             alert('All inputs must contain valid information')
         } else {
@@ -97,12 +97,12 @@ const CreateActivity = () => {
         }
         return error
     }
-
+    console.log(country.map((e, i)=> e.id + i))
     useEffect(() => {
         dispatch(getCountries(''))
     }, [dispatch])
 
-
+   
     return (
         <div className={styles.page}  >
            <div className={styles.nav}>
@@ -121,6 +121,7 @@ const CreateActivity = () => {
                             type='text'
                             value={input.name}
                             name='name'
+                            autoComplete='off'
                             onChange={handleOnChange} />
                             {error.name && <p>{error.name}</p>}
                     </div>
@@ -175,6 +176,8 @@ const CreateActivity = () => {
                             type='number'
                             value={input.duration}
                             name='duration'
+                            autoComplete='off'
+                            min='0'
                             onChange={handleOnChange} />
                              {error.duration && <p>{error.duration}</p>}
                     </div>
@@ -219,10 +222,10 @@ const CreateActivity = () => {
                         <div >
                              <select
                                 onChange={(e ) => handleSelect(e)} >
-                                {country?.map((e, index) => (
+                                {country?.map((e, i ) => (
                                     <option
                                     value= {e.name}
-                                    key={country.id} 
+                                    key={e.id + i} 
                                     >{e.name}
                                     </option>
                                 ))}
@@ -231,12 +234,12 @@ const CreateActivity = () => {
                         {error.country && <p>{error.country}</p>}               
                     </div>
                     {input.country.map((e) =>
-                        <div >
-                            <p className={styles.element} >{e}</p>
+                        <ul key = {e}>
+                            <p className={styles.element}>{e}</p>
                             <button className={styles.button}
                                 type='button'
                                 onClick={() => handleDelete(e)}>X</button>
-                        </div>
+                        </ul>
                     )}
                     <div >
                         <input type='submit' value='Create'/>

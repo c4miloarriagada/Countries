@@ -12,7 +12,7 @@ const About = () => {
       </div>
       <div className={style.container}> 
       <h1 className={style.h1}>About</h1>
-      <p className={style.p}><strong>Hi!, I'm Camilo from Chile and this is my personal project for Henry bootcamp!. I made all parts of this website, the Back end with Node JS, Express JS and Sequelize, and  Front end with React JS, Redux and CSS </strong></p>
+      <p className={style.p}><strong>Hi!, I'm Camilo from Chile and this is my personal project for Henry bootcamp!. I made all parts of this website, the Back end with Node JS, Express JS and Sequelize, and the Front end with React JS, Redux and CSS </strong></p>
       <p className={style.p}><strong>If you want to contact me, links below!</strong></p>
       <a 
             rel='noreferrer'
