@@ -66,8 +66,7 @@
     
     outline: #365b77;
     border-radius: 10px;
-    cursor: text;
-    
+    cursor: pointer;
 
 }
 .form input:hover{
