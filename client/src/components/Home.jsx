@@ -108,7 +108,7 @@ export default function Home() {
                 <li className={styles.li}><Nav onSearch={handleSearch} /></li>
                 <li className={styles.li}><Link to='/activity'> Create activity 🏄‍♂️</Link></li>
                 <li className={styles.li}><Link to='/About'> About 💻</Link></li>
-                <div className={styles.mov}> 
+                <div> 
                 <select onChange={e => populationOrder(e)} className={styles.select}>
                         <option hidden>  Order by population     </option>
                         <option value='DESC' >  Ascendent </option>
@@ -138,13 +138,7 @@ export default function Home() {
                     </select>
                     </div>
                 </ul>
-                </header>
-            <div>
-                <div className={styles.customselect}>
-              
-                   
-                </div>
-            </div>
+                </header>      
             <div> 
             <h1 className={styles.h1}>  Countries Of The World! 🌎   </h1>
            
