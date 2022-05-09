@@ -1,39 +1,75 @@
 import axios from 'axios';
 
-export function getCountryById(id){
-    return async function(dispatch){
-        const json = await axios.get('/countries/' + id);
-        const data = json.data
-        return dispatch({
-            type: 'GET_COUNTRY',
-            payload: data
-        })
-    }
-}
+
+ export function getCountryById(id){
+        return async function(dispatch){
+         const json = await axios.get('/countries/' + id);
+         const data = json.data
+         return dispatch({
+             type: 'GET_COUNTRY',
+             payload: data
+         })
+     }
+ }
+
+// export const getCountryById = (id) => dispatch =>{
+//     return axios.get('/countries/' + id)
+//     .then(response => response.data)
+//     .then(data =>{
+//          dispatch({
+//             type: 'GET_COUNTRY',
+//             payload: data
+//         })
+//     })
+// }
 
 
-export  function getCountries(order){
-    return async function(dispatch){
-        const json = await axios.get('/countries?order=' + order)
-        const data = json.data
-    return dispatch({
-        type: 'GET_COUNTRIES',
-        payload: data
-        })
-    }
-}
 
-export function getCountryByName(name){
-    return async function(dispatch){
-        const json = await axios.get('/countries?name=' + name);
-        const data = json.data
-        return dispatch({
-            type: 'GET_BY_NAME',
-            payload: data
-        })
 
-    }
-}
+
+ export  function getCountries(order){
+     return async function(dispatch){
+         const json = await axios.get('/countries?order=' + order)
+         const data = json.data
+     return dispatch({
+         type: 'GET_COUNTRIES',
+         payload: data
+         })
+     }
+ }
+// export const getCountries = (order) => dispatch =>{
+//     return axios.get('/countries?order=' + order)
+//     .then(response => response.data)
+//     .then(data =>{
+//         dispatch({
+//             type: 'GET_COUNTRIES',
+//             payload: data
+//         })
+//     })
+// }
+
+ export function getCountryByName(name){
+     return async function(dispatch){
+         const json = await axios.get('/countries?name=' + name);
+         const data = json.data
+         return dispatch({
+             type: 'GET_BY_NAME',
+             payload: data
+         })
+
+     }
+ }
+
+// export const getCountryByName = (name) => dispatch =>{
+//     return axios.get('/countries?name=' + name)
+//     .then(response => response.data)
+//     .then(data =>{
+//         dispatch({
+//             type: 'GET_BY_NAME',
+//             payload: data
+//         })
+//     })
+// }
 
 
 export  function getActivities(){

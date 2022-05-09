@@ -8,13 +8,13 @@ import styles from './CountryDetails.module.css'
 
 const CountryDetails = () => {
 
-    const {countryId} = useParams();
+    const {id} = useParams();
     const dispatch = useDispatch();
     const country = useSelector((state) => state.country)
-    console.log(countryId)
+ 
     useEffect(()=>{
-        dispatch(getCountryById(countryId))
-    },[dispatch, countryId])
+        dispatch(getCountryById(id))
+    },[dispatch, id])
 
 
 
@@ -38,11 +38,11 @@ const CountryDetails = () => {
         </div>
         {country.activities?.map((e)=>
         <ActivityCard
-        name={e.name} 
-        difficult={e.difficult} 
-        duration={e.duration}
-        season={e.season}
-        key={e.id}
+          name={e.name} 
+          difficult={e.difficult} 
+          duration={e.duration}
+          season={e.season}
+          key={e.id}
         /> )}
       
     </div>

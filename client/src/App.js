@@ -19,7 +19,7 @@ function App() {
      
      <Route exact path ='/' element={<LandingPage/>}/>
      <Route exact path = '/home/' element={<Home/>}/>
-     <Route path='/home/:countryId' element={<CountryDetails/>}/>
+     <Route path='/home/:id' element={<CountryDetails/>}/>
      <Route path= '/activity' element={<CreateActivity/>}/>
      <Route path='/about' element={<About/>}/>
      <Route path= '*' element={<NotFound/>}/>

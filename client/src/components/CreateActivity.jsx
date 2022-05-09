@@ -32,16 +32,6 @@ const CreateActivity = () => {
         })
     }
 
-    function handleCheckBox(e) {
-        console.log(e.target.checked)
-            setInput({
-                ...input,
-                [e.target.name]: e.target.value,
-               
-            })   
-    }
-
-
     function handleSelect(e) {
         setInput({
             ...input,
@@ -97,11 +87,11 @@ const CreateActivity = () => {
         }
         return error
     }
-    console.log(country.map((e, i)=> e.id + i))
+   
     useEffect(() => {
         dispatch(getCountries(''))
     }, [dispatch])
-
+   
    
     return (
         <div className={styles.page}  >
@@ -132,7 +122,7 @@ const CreateActivity = () => {
                                 type='radio'
                                 value='1'
                                 name='difficult'
-                                onChange={e => handleCheckBox(e)}/>
+                                onChange={handleOnChange}/>
                                 
                             1</label>
                         <label>
@@ -140,7 +130,7 @@ const CreateActivity = () => {
                                 type='radio'
                                 value='2'
                                 name='difficult'
-                                onChange={e => handleCheckBox(e)}
+                                onChange={handleOnChange}
                             />
                             2</label>
                         <label>
@@ -148,7 +138,7 @@ const CreateActivity = () => {
                                 type='radio'
                                 value='3'
                                 name='difficult'
-                                onChange={e => handleCheckBox(e)}
+                                onChange={handleOnChange}
                             />
                             3</label>
                         <label>
@@ -156,7 +146,7 @@ const CreateActivity = () => {
                                 type='radio'
                                 value='4'
                                 name='difficult'
-                                onChange={e => handleCheckBox(e)}
+                                onChange={handleOnChange}
                             />
                            4</label>
                         <label>
@@ -165,9 +155,10 @@ const CreateActivity = () => {
                                 type='radio'
                                 value='5'
                                 name='difficult'
-                                onChange={e => handleCheckBox(e)}
+                                onChange={handleOnChange}
                             />
                             5</label>
+                            {error.difficult && <p>{error.difficult}</p>}
                     </div>
                     <div >
                         <label>Duration : </label>
@@ -188,7 +179,7 @@ const CreateActivity = () => {
                                 type='radio'
                                 value='Summer'
                                 name='season'
-                                onChange={e => handleCheckBox(e)}
+                                onChange={handleOnChange}
                             />
                             Summer</label>
                         <label>
@@ -196,7 +187,7 @@ const CreateActivity = () => {
                                 type='radio'
                                 value='Spring'
                                 name='season'
-                                onChange={e => handleCheckBox(e)}
+                                onChange={handleOnChange}
                             />
                             Spring</label>
                         <label>
@@ -204,7 +195,7 @@ const CreateActivity = () => {
                                 type='radio'
                                 value='Fall'
                                 name='season'
-                                onChange={e => handleCheckBox(e)}
+                                onChange={handleOnChange}
                             />
                             Fall</label>
                         <label>
@@ -212,9 +203,10 @@ const CreateActivity = () => {
                                 type="radio"
                                 value='Winter'
                                 name='season'
-                                onChange={e => handleCheckBox(e)}
+                                onChange={handleOnChange}
                             />
                             Winter</label>
+                            {error.season && <p>{error.season}</p>}
 
                     </div>
                     <div >

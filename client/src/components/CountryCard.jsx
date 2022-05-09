@@ -20,7 +20,7 @@ const CountryCard = ({img, name,continent,population,id,subregion}) => {
                 
         </div>
     </div>
-            </Link>
+    </Link>
   )
 }
 
