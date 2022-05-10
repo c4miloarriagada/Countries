@@ -94,7 +94,7 @@ const CreateActivity = () => {
    
    
     return (
-        <div className={styles.page}  >
+        <div >
            <div className={styles.nav}>
             <li className={styles.li}><Link to='/home'> Go Home</Link></li>
             </div>
@@ -214,7 +214,7 @@ const CreateActivity = () => {
                         <div >
                              <select
                                 onChange={(e ) => handleSelect(e)} >
-                                {country?.map((e, i ) => (
+                                {country && country.map((e, i ) => (
                                     <option
                                     value= {e.name}
                                     key={e.id + i} 

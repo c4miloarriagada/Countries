@@ -5,7 +5,7 @@ import styles from './CountryCard.module.css'
 
 
 const CountryCard = ({img, name,continent,population,id,subregion}) => {
-
+ 
   return (
     
     <Link to= {'/home/' + id}>
@@ -15,9 +15,7 @@ const CountryCard = ({img, name,continent,population,id,subregion}) => {
                 <h3>{name }</h3>
                 <h3>{continent}</h3>
                 <h3>{subregion}</h3>
-                <h3>{population}</h3>
-
-                
+                <h3>{population}</h3>               
         </div>
     </div>
     </Link>

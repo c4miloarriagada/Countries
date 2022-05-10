@@ -29,16 +29,18 @@ export default function Home() {
     const indexOfLastCountry = currentPage * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
     const currentCountry = allCountries.slice(indexOfFirstCountry, indexOfLastCountry)
-
+   
     useEffect(() => {
         dispatch(getCountries(order));
         dispatch(getActivities())      
     }, [dispatch, order])
-
+   
     function populationOrder(e) {
+        console.log(e.target.value)
         e.preventDefault()
         setOrder(e.target.value)
     }
+
 
     function handleFilterByContinent(e) {
         e.preventDefault()
@@ -50,7 +52,7 @@ export default function Home() {
         e.preventDefault()
         dispatch(filterActivity(e.target.value));
         setCurrentPage(1)
-        setOrder()
+       
     }
 
     function handleSort(e) {
@@ -86,7 +88,7 @@ export default function Home() {
     //       }
     //   }
 
-    //   console.log(allCountries.length/countriesPerPage)
+    
 
     //  if(currentCountry && loading){
     //   setLoading(false)
@@ -100,7 +102,7 @@ export default function Home() {
     return (
         
 
-        <div className={styles.page}>
+        <div>
             <header>
                 <ul className={styles.ul}>
                  {/* <li className={styles.li}><Link to={'/home'}> Home </Link> </li> */}
@@ -110,7 +112,7 @@ export default function Home() {
                 <li className={styles.li}><Link to='/About'> About 💻</Link></li>
                 <div> 
                 <select onChange={e => populationOrder(e)} className={styles.select}>
-                        <option hidden>  Order by population     </option>
+                        <option >  Order by population     </option>
                         <option value='DESC' >  Ascendent </option>
                         <option value='ASC'>  Descendant </option>
                     </select>
@@ -130,7 +132,7 @@ export default function Home() {
                     </select>
                     
                     <select onChange={e => handleFilterByActivity(e)}className={styles.select}>
-                        <option hidden>All Activities</option>
+                        <option hidden value='All'>All Activities</option>
                         {activities?.map(e => (
                             <option value={e.name}
                                     key={e.id}> {e.name} </option>
@@ -144,8 +146,8 @@ export default function Home() {
            
                 <ul className={styles.container}>
 
-                    {/*loading ? <img src={giphy} alt='Loading' className={styles.gif} width='500px' height='500px'/>:*/
-                    currentCountry?.map(e => (
+                {/*loading ? <img src={giphy} alt='Loading' className={styles.gif} width='500px' height='500px'/>:*/
+                 currentCountry &&  currentCountry.map(e => (
                         <CountryCard
                             name={e.name}
                             continent={e.continent}

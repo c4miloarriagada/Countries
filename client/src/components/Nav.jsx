@@ -9,8 +9,6 @@ export default function Nav({onSearch}) {
     const [name, setName] = useState('')
     //const dispatch = useDispatch()
 
-
-
     function handleInputChange(e) {
         e.preventDefault();
         setName(e.target.value)

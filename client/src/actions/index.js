@@ -74,7 +74,7 @@ import axios from 'axios';
 
 export  function getActivities(){
     return async function(dispatch){
-        let json = await axios('/activity')
+        let json = await axios.get('/activity')
         const data = json.data
     return dispatch({
         type: 'GET_ACTIVITY',

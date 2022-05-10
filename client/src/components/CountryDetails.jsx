@@ -19,7 +19,7 @@ const CountryDetails = () => {
 
 
   return (
-    <div className={styles.page}>
+    <div>
         <div className={styles.nav}>
         <li className={styles.li}><Link to='/home'> Go Home</Link></li>
         </div>
