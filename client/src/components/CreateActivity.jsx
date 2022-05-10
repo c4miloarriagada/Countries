@@ -37,6 +37,7 @@ const CreateActivity = () => {
             ...input,
             country: [...input.country, e.target.value]
         })
+        
     }
 
 

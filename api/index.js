@@ -29,9 +29,9 @@ db.sync({ force: false })
   console.log('================================')
   uploadCountries(Country)
     .then(()=>{
-      server.listen(PORT, () => {
+      server.listen(PORT || 5000, () => {
       console.log(`Listening at ${PORT}`); // eslint-disable-line no-console
     })
-  })
+  })   
 })
 .catch(err => console.log('error: ', err))
