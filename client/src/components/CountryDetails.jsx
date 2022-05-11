@@ -1,6 +1,6 @@
 import {React, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
-import { getCountryById } from '../actions'
+import { getCountryById, clearState } from '../actions'
 import { useDispatch, useSelector } from 'react-redux'
 import ActivityCard from './ActivityCard'
 import {Link} from 'react-router-dom'
@@ -13,7 +13,10 @@ const CountryDetails = () => {
     const country = useSelector((state) => state.country)
  
     useEffect(()=>{
-        dispatch(getCountryById(id))
+      dispatch(getCountryById(id))
+      return()=>{
+      dispatch(clearState())
+      }
     },[dispatch, id])
 
 

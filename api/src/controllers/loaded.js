@@ -2,7 +2,6 @@ const { default: axios } = require('axios');
 
 
 const uploadCountries = async (Country) => {
-
     try {
         const response = await axios.get('https://restcountries.com/v3/all')
         const countriesInfo = response.data

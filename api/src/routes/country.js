@@ -57,6 +57,58 @@ router.get('/', async (req, res) => {
   }
 
 });
+/*
+ router.get('/' , (req, res) => {
+   const { name } = req.query
+   const { order } = req.query
+
+   if(name){
+     Country.findAll({
+       where: {
+         name: {
+           [Op.iLike]: `%${name}%`
+        }
+       },
+       include: Activity
+     })
+     .then((country)=>{
+         if(country.length === 0){
+            return res.status(404).send('Country doesnt exists')
+       }
+       return res.json(country)
+      })
+    }else if (order){
+      if(order === 'ASC' || order === 'DESC')
+      Country.findAll({
+        order: [
+          ['population', order]
+        ],
+        include: {
+          model: Activity,
+        }
+      })
+      .then((country)=>{
+         return res.json(country)
+      })
+    }else{
+      Country.findAll({
+        order: [
+          ['name', 'ASC']
+        ],
+        include: {
+          model: Activity,
+        }
+      })
+      .then((country)=>{
+        return res.json(country)
+      })
+      .catch(err => {
+      console.log('error', err)
+      })
+    }
+ })*/
+
+
 
 
 router.get('/:id', async (req, res) => {

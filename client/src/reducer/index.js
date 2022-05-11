@@ -3,9 +3,10 @@ import {
     FILTER_BY_CONTINENT,
     FILTER_ACTIVITY,
     ORDER_BY_NAME,
+    CLEAR_STATE,
     GET_ACTIVITY,
     GET_COUNTRY,
-    GET_BY_NAME
+    GET_BY_NAME,
 } from "../actions";
 
 const initialState = {
@@ -41,8 +42,12 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 activities: action.payload
             }
-
-        case FILTER_BY_CONTINENT:
+        case CLEAR_STATE:
+            return{
+                ...state,
+                country: {}
+            }
+         case FILTER_BY_CONTINENT:
             const allCountries = state.allCountries
             const continentFilter = action.payload === 'All'
                 ? allCountries
@@ -64,17 +69,44 @@ function rootReducer(state = initialState, action) {
             }
         case ORDER_BY_NAME:
             const sortCountries = action.payload === 'asc'
-                ? state.countries.sort((a, b) => a.name.localeCompare(b.name))
-                : state.countries.sort((a, b) => b.name.localeCompare(a.name))
-            console.log(sortCountries)
+                ? state.allCountries.sort((a, b) => a.name.localeCompare(b.name))
+                : state.allCountries.sort((a, b) => b.name.localeCompare(a.name))
+            
             return {
                 ...state,
                 countries: sortCountries
 
             }
-
-
-
+        /*case FILTER_POPULATION_CONDITION:
+            const filterPopulationCondition = state.allCountries.filter(e=> e.population <= 19116209)
+            return{
+                ...state,
+                countries: filterPopulationCondition
+            }*/
+        // case FILTER_BY_POPULATION:
+            
+        //     const filterPopulation = action.payload === 'ASC'
+            
+        //     ? state.allCountries.sort((a,b)=>{
+               
+        //         return Number(a.population) < Number(b.population)
+        //         ? 1
+        //         : Number(a.population) < Number(b.population)
+        //         ? -1
+        //         : 0;
+                    
+        //     })
+        //     : state.countries.sort((a,b)=>{
+        //         return Number(a.population) > Number(b.population)
+        //         ? 1
+        //         : Number(a.population) < Number(b.population)
+        //         ? -1
+        //         : 0;
+        //     })
+        //     return{
+        //         ...state,
+        //         countries: filterPopulation
+        //     }
 
         default: return state;
     }
@@ -84,4 +116,12 @@ function rootReducer(state = initialState, action) {
 
 
 
-export default rootReducer;
+export default rootReducer;   
+
+/*
+return Number(a.population) > Number(b.population)
+? 1
+: Number(a.population) < Number(b.population)
+? -1
+: 0;
+*/

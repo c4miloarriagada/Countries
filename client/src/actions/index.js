@@ -23,10 +23,6 @@ import axios from 'axios';
 //     })
 // }
 
-
-
-
-
  export  function getCountries(order){
      return async function(dispatch){
          const json = await axios.get('/countries?order=' + order)
@@ -55,24 +51,31 @@ import axios from 'axios';
          return dispatch({
              type: 'GET_BY_NAME',
              payload: data
-         })
-
-     }
+            })
+            
+        }
  }
+ 
+ // export const getCountryByName = (name) => dispatch =>{
+     //     return axios.get('/countries?name=' + name)
+     //     .then(response => response.data)
+     //     .then(data =>{
+         //         dispatch({
+             //             type: 'GET_BY_NAME',
+             //             payload: data
+             //         })
+             //     })
+             // }
 
-// export const getCountryByName = (name) => dispatch =>{
-//     return axios.get('/countries?name=' + name)
-//     .then(response => response.data)
-//     .then(data =>{
-//         dispatch({
-//             type: 'GET_BY_NAME',
-//             payload: data
-//         })
-//     })
-// }
-
-
-export  function getActivities(){
+export function clearState(payload){
+    return{
+        type: 'CLEAR_STATE',
+        payload
+    }
+ }
+             
+             
+ export  function getActivities(){
     return async function(dispatch){
         let json = await axios.get('/activity')
         const data = json.data
@@ -112,13 +115,28 @@ export function orderByName(payload){
         payload
     }
 }
+/*
+export function filterByPopulationCondition(payload){
+    return{
+        type: 'FILTER_POPULATION_CONDITION',
+        payload
+    }
+}*/
 
-
+// export function filterByPopulation(payload){
+//     return{
+//         type: 'FILTER_BY_POPULATION',
+//         payload
+//     }
+// }
 
 export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const FILTER_BY_CONTINENT = 'FILTER_BY_CONTINENT';
+export const CLEAR_STATE = 'CLEAR_STATE'
 export const FILTER_ACTIVITY = 'FILTER_ACTIVITY'
 export const ORDER_BY_NAME  = 'ORDER_BY_NAME'
 export const GET_ACTIVITY = 'GET_ACTIVITY'
 export const GET_COUNTRY = 'GET_COUNTRY'
 export const GET_BY_NAME = 'GET_BY_NAME'
+// export const FILTER_POPULATION_CONDITION = 'FILTER_POPULATION_CONDITION'
+// export const FILTER_BY_POPULATION = 'FILTER_BY_POPULATION'
