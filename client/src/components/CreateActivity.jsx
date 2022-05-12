@@ -48,7 +48,7 @@ const CreateActivity = () => {
 
     function handleSubmit(e) {
          console.log(input)
-         if (input.name < 3|| !input.difficult || !input.duration || !input.season || input.country.length === 0 ) {
+         if (input.name.length < 3 || !input.difficult || !input.duration || !input.season || input.country.length === 0 ) {
              e.preventDefault()
             alert('All inputs must contain valid information')
         } else {
