@@ -30,8 +30,6 @@ const CountryDetails = () => {
     //   dispatch(deleteActivity(id));
       
     // }
-    console.log((!!country))
-
   return (
     <div>
         <div className={styles.nav}>

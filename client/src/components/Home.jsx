@@ -75,7 +75,7 @@ export default function Home() {
         window.location.reload();
       };
     
-if(currentCountry && loading){
+    if(currentCountry && loading){
         setLoading(false)
     }  
 //  const nextPage = ()=>{
