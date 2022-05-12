@@ -7,16 +7,22 @@ export default function Nav({onSearch}) {
 
 
     const [name, setName] = useState('')
-    //const dispatch = useDispatch()
 
+    //const dispatch = useDispatch()
+    
+
+   
     function handleInputChange(e) {
         e.preventDefault();
         setName(e.target.value)
-    }
+    }    
     const handleOnSubmit = (e)=>{
         e.preventDefault()
         onSearch(name)
-    }
+    }    
+
+
+
   /*  function handleOnSubmit(e) {
         e.preventDefault();
         dispatch(getCountryByName(name))
@@ -34,7 +40,11 @@ export default function Nav({onSearch}) {
                     value={name}
                     onChange={handleInputChange}
                 />
+               
+                
                 <button type='submit'> Search 🔍</button>
+              
+                
             </div>
 
         </form>

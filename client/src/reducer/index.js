@@ -7,6 +7,7 @@ import {
     GET_ACTIVITY,
     GET_COUNTRY,
     GET_BY_NAME,
+    
 } from "../actions";
 
 const initialState = {
@@ -47,85 +48,78 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 country: {}
             }
-        // case DELETE_ACTIVITY:
-        //     return{
-        //         ...state,
-        //     }    
         case FILTER_BY_CONTINENT:
-            const allCountries = state.allCountries
-            const continentFilter = action.payload === 'All'
+                const allCountries = state.allCountries
+                const continentFilter = action.payload === 'All'
                 ? allCountries
                 : allCountries.filter(e => e.continent === action.payload)
-            return {
-                ...state,
-                countries: continentFilter
-            }
+                return {
+                    ...state,
+                    countries: continentFilter
+                }
         case FILTER_ACTIVITY:
-          
+                    
             const allCountriesAct = state.allCountries
             const activitiesFilter = action.payload === 'All'
-                ? allCountriesAct
-                : allCountriesAct.filter(c => c.activities && c.activities.map(e => e.name).includes(action.payload))
-
+            ? allCountriesAct
+            : allCountriesAct.filter(c => c.activities && c.activities.map(e => e.name).includes(action.payload))
+            
             return {
                 ...state,
                 countries: activitiesFilter
             }
         case ORDER_BY_NAME:
             const sortCountries = action.payload === 'asc'
-                ? state.allCountries.sort((a, b) => a.name.localeCompare(b.name))
-                : state.allCountries.sort((a, b) => b.name.localeCompare(a.name))
+            ? state.allCountries.sort((a, b) => a.name.localeCompare(b.name))
+            : state.allCountries.sort((a, b) => b.name.localeCompare(a.name))
             
             return {
                 ...state,
                 countries: sortCountries
-
+                
             }
-        /*case FILTER_POPULATION_CONDITION:
-            const filterPopulationCondition = state.allCountries.filter(e=> e.population <= 19116209)
-            return{
-                ...state,
-                countries: filterPopulationCondition
-            }*/
-        // case FILTER_BY_POPULATION:
+            // case DELETE_ACTIVITY:
+            //     return{
+                //         ...state,
+                //     }    
+                /*case FILTER_POPULATION_CONDITION:
+                const filterPopulationCondition = state.allCountries.filter(e=> e.population <= 19116209)
+                return{
+                    ...state,
+                    countries: filterPopulationCondition
+                }*/
+                //  case FILTER_BY_POPULATION:
             
-        //     const filterPopulation = action.payload === 'ASC'
-            
+        //      const filterPopulation = action.payload === 'ASC'
+        
         //     ? state.allCountries.sort((a,b)=>{
-               
-        //         return Number(a.population) < Number(b.population)
-        //         ? 1
-        //         : Number(a.population) < Number(b.population)
-        //         ? -1
-        //         : 0;
-                    
-        //     })
-        //     : state.countries.sort((a,b)=>{
-        //         return Number(a.population) > Number(b.population)
-        //         ? 1
-        //         : Number(a.population) < Number(b.population)
-        //         ? -1
-        //         : 0;
-        //     })
-        //     return{
-        //         ...state,
-        //         countries: filterPopulation
-        //     }
-
+            
+            //         return Number(a.population) > Number(b.population)
+            //          ? 1
+        //          : Number(a.population) < Number(b.population)
+        //          ? -1
+        //          : 0;
+        
+        //      })
+        //      : state.countries.sort((a,b)=>{
+            //          return Number(a.population) > Number(b.population)
+            //          ? 1
+            //          : Number(a.population) < Number(b.population)
+            //          ? -1
+            //          : 0;
+            //      })
+            //      return{
+                //          ...state,
+                //          countries: filterPopulation
+                //      }
+                
         default: return state;
-    }
+            }
+            
+        }
 
-}
 
-
-
+        
 
 export default rootReducer;   
 
-/*
-return Number(a.population) > Number(b.population)
-? 1
-: Number(a.population) < Number(b.population)
-? -1
-: 0;
-*/

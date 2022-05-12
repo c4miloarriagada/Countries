@@ -6,14 +6,13 @@ import { getCountries,
          filterActivity,  
          orderByName,  
          getActivities,  
-         getCountryByName
+         getCountryByName, 
         } from "../actions";
 import { Link } from 'react-router-dom'
 import CountryCard from "./CountryCard";
-import styles from './Home.module.css';
 import Paginated from "./Paginated";
 import Nav from './Nav'
-//import LisActivities from './LisActivities'
+import styles from './Home.module.css';
 import giphy from '../assets/giphy.gif'
 
 
@@ -67,6 +66,7 @@ export default function Home() {
     }
 
     const handleSearch=(value)=>{
+        if(value)
         dispatch(getCountryByName(value));
         setCurrentPage(1)
     }
@@ -95,11 +95,11 @@ export default function Home() {
 //         setOrder()
 //     }
 
-// const handleClick = (e)=>{
-//     e.preventDefault()
-//     dispatch(filterByPopulation(e.target.value))
-//     setOrder(e.target.value)
-//  }
+//  const handleClick = (e)=>{
+//      e.preventDefault()
+//      dispatch(filterByPopulation(e.target.value))
+//      setOrder(e.target.value)
+//   }
 
 return (
         
@@ -136,8 +136,7 @@ return (
                     
                     <select onChange={e => handleFilterByActivity(e)}className={styles.select}>
                         <option hidden value='All'>All Activities</option>
-                        {activities?.map(e => (
-                            
+                        {activities?.map(e => ( 
                             <option value={e.name}
                                     key={e.id}> {e.name} 
                             </option>

@@ -132,12 +132,12 @@ export function filterByPopulationCondition(payload){
     }
 }*/
 
-// export function filterByPopulation(payload){
-//     return{
-//         type: 'FILTER_BY_POPULATION',
-//         payload
-//     }
-// }
+ export function filterByPopulation(payload){
+     return{
+         type: 'FILTER_BY_POPULATION',
+         payload
+     }
+ }
 
 export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const FILTER_BY_CONTINENT = 'FILTER_BY_CONTINENT';
@@ -149,4 +149,4 @@ export const GET_COUNTRY = 'GET_COUNTRY'
 export const GET_BY_NAME = 'GET_BY_NAME'
 //export const DELETE_ACTIVITY = 'DELETE_ACTIVITY'
 // export const FILTER_POPULATION_CONDITION = 'FILTER_POPULATION_CONDITION'
-// export const FILTER_BY_POPULATION = 'FILTER_BY_POPULATION'
+//export const FILTER_BY_POPULATION = 'FILTER_BY_POPULATION'

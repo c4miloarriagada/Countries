@@ -6,6 +6,7 @@ import { getCountries, postActivity } from '../actions/index'
 import styles from './CreateActivity.module.css'
 
 
+
 const CreateActivity = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -18,9 +19,13 @@ const CreateActivity = () => {
         season: '',
         country: []
     })
+    
+    useEffect(() => {
+       dispatch(getCountries(''))
+    }, [dispatch])
 
     function handleOnChange(e) {
-
+        
         setInput((state) => {
             const newState ={
                 ...state,
@@ -41,11 +46,9 @@ const CreateActivity = () => {
         
     }
 
-
-
     function handleSubmit(e) {
          console.log(input)
-         if (!input.name || !input.difficult || !input.duration || !input.season || input.country.length === 0 ) {
+         if (input.name < 3|| !input.difficult || !input.duration || !input.season || input.country.length === 0 ) {
              e.preventDefault()
             alert('All inputs must contain valid information')
         } else {
@@ -72,8 +75,8 @@ const CreateActivity = () => {
 
     function validate(input){
         let error = {};
-        if(input.name.length === 0){
-            error.name = 'Activity name is required'
+        if(input.name.length < 3){
+            error.name = 'Name of activity must be valid'
         }
         if(!input.duration){
             error.duration = 'Duration must be specified in hours'
@@ -89,10 +92,6 @@ const CreateActivity = () => {
         }
         return error
     }
-   
-    useEffect(() => {
-        dispatch(getCountries(''))
-    }, [dispatch])
    
    
     return (
@@ -114,7 +113,7 @@ const CreateActivity = () => {
                             value={input.name}
                             name='name'
                             autoComplete='off'
-                            onChange={handleOnChange} />
+                            onChange={handleOnChange}/>
                             {error.name && <p>{error.name}</p>}
                     </div>
                     <div >
@@ -246,12 +245,3 @@ const CreateActivity = () => {
 }
 
 export default CreateActivity
-/*
-<select onChange={} > 
-<option hidden>Difficult </option>
-<option value='1'> 1 </option>
-<option value='2'> 2 </option>
-<option value='3'> 3 </option>
-<option value='4'> 4 </option>
-<option value='5'> 5 </option>
-</select>*/

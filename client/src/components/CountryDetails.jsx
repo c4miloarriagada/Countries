@@ -2,8 +2,8 @@ import {React, useEffect, useState} from 'react'
 import { /*useNavigate,*/ useParams } from 'react-router-dom'
 import { getCountryById, clearState, /*deleteActivity*/} from '../actions'
 import { useDispatch, useSelector } from 'react-redux'
-import ActivityCard from './ActivityCard'
 import {Link} from 'react-router-dom'
+import ActivityCard from './ActivityCard'
 import styles from './CountryDetails.module.css'
 import giphy from '../assets/giphy.gif'
 
@@ -24,7 +24,7 @@ const CountryDetails = () => {
 
     if(!!country.img && loading){
       setLoading(!loading)
-  }  
+    }  
   
     // const handleDelete = () =>{
     //   dispatch(deleteActivity(id));
