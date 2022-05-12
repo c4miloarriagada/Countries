@@ -22,7 +22,7 @@ const server = require('./src/app.js');
 const { db, Country } = require('./src/db.js');
 const PORT = process.env.PORT
 // Syncing all the models at once.
-db.sync({ force: false })
+db.sync({ force: true })
 .then(() => {
   console.log('================================')
   console.log('         DATA BASE OK           ')

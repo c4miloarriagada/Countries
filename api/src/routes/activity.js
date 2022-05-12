@@ -62,46 +62,84 @@ router.post('/', async (req, res) => {
 
 
 
-router.delete('/:id', async (req, res) => { //delete activity that match with the name and id country
+//router.delete('/:id', async (req, res) => { //delete all activities ? 
+
+    // try {
+        
+    //     const { id } = req.params;
+    //     const name = req.body.name
+    //     const deleteActivities = await Country_activities.findAll({
+    //         where: {
+    //             countryId: id,
+    //             name: name
+    //         }
+              
+    //    });
+    // //    const idActivity = deleteActivities.activityId
+    // //    const activityDestroy = await Activity.findOne({
+    // //             where: {
+    // //                 id: idActivity
+    // //             }
+    // //          });
+       
+    //    console.log(deleteActivities)
+    //    if (deleteActivities) {
+    //        console.log(id)
+    //      await deleteActivities.destroy({
+    //          where:{
+    //             countryId: id,
+    //             name: name
+    //          }
+    //      })
+    //      return res.send('The Activity was deleted successfully')
+    // }
+       
+    //   } catch (error) {
+    //     res.status(400).send(error);
+    //   }
+
     
-    try {
+
+
+
+    
+//     try {
         
-        const name = req.body.name
-        const id = req.params.id.toUpperCase()
+//         const name = req.body.name
+//         const id = req.params.id.toUpperCase()
         
-        const activityDestroy = await Activity.findOne({
-            where: {
-                name: name
-            }
-        });
+//         const activityDestroy = await Activity.findOne({
+//             where: {
+//                 name: name
+//             }
+//         });
         
-        const deleteActivities = await Country_activities.findOne({
-            where: {
-                countryId: id
+//         const deleteActivities = await Country_activities.findOne({
+//             where: {
+//                 countryId: id
                 
-            },
+//             },
             
-        });
+//         });
         
         
-        if (activityDestroy && !deleteActivities) return res.status(400).send(`Doesnt exist has any activity called ${name} related with the id: ${id}`)
+//         if (activityDestroy && !deleteActivities) return res.status(400).send(`Doesnt exist has any activity called ${name} related with the id: ${id}`)
         
-        if (deleteActivities) {
-            deleteActivities.destroy({
-                where: {
-                    countryId: id
-                }
-            })
-            return res.send('The Activity was deleted successfully')
-        }
+//         if (deleteActivities) {
+//             deleteActivities.destroy({
+//                 where: {
+//                     countryId: id
+//                 }
+//             })
+//             return res.send('The Activity was deleted successfully')
+//         }
 
-    } catch (error) {
+//     } catch (error) {
 
-        return res.status(500).json({ Server_Status: `ID Country doesnt has any activity or is invalid` })
+//         return res.status(500).json({ Server_Status: `ID Country doesnt has any activity or is invalid` })
 
-    }
-});
-
+//     }
+// });
 /*
 router.put('/:id', async(req, res)=>{
     const id = req.params.id.toUpperCase()
