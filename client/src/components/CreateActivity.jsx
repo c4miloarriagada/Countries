@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCountries, postActivity } from '../actions/index'
 import styles from './CreateActivity.module.css'
@@ -8,7 +8,7 @@ import styles from './CreateActivity.module.css'
 
 const CreateActivity = () => {
     const dispatch = useDispatch()
-    //const history = useNavigate()
+    const navigate = useNavigate()
     const country = useSelector((state) => state.countries)
     const [error , setError] = useState({})
     const [input, setInput] = useState({
@@ -30,6 +30,7 @@ const CreateActivity = () => {
             setError(validate(newState))
             return  newState;
         })
+       
     }
 
     function handleSelect(e) {
@@ -58,7 +59,7 @@ const CreateActivity = () => {
                 season: '',
                 country: []
             })
-
+            navigate('/home') 
         }
     }  
 

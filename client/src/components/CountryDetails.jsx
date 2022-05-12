@@ -1,17 +1,19 @@
-import {React, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
-import { getCountryById, clearState } from '../actions'
+import {React, useEffect, useState} from 'react'
+import { /*useNavigate,*/ useParams } from 'react-router-dom'
+import { getCountryById, clearState, /*deleteActivity*/} from '../actions'
 import { useDispatch, useSelector } from 'react-redux'
 import ActivityCard from './ActivityCard'
 import {Link} from 'react-router-dom'
 import styles from './CountryDetails.module.css'
+import giphy from '../assets/giphy.gif'
 
 const CountryDetails = () => {
 
     const {id} = useParams();
     const dispatch = useDispatch();
     const country = useSelector((state) => state.country)
- 
+    //const navigate = useNavigate()
+    const [loading, setLoading] = useState(true)
     useEffect(()=>{
       dispatch(getCountryById(id))
       return()=>{
@@ -20,6 +22,15 @@ const CountryDetails = () => {
     },[dispatch, id])
 
 
+    if(!!country.img && loading){
+      setLoading(!loading)
+  }  
+  
+    // const handleDelete = () =>{
+    //   dispatch(deleteActivity(id));
+      
+    // }
+    console.log((!!country))
 
   return (
     <div>
@@ -28,7 +39,8 @@ const CountryDetails = () => {
         </div>
         
         <div className={styles.card} > 
-        <img src={country.img} width='430px' height='220px' alt={country.name} className={styles.img}/>
+       { !!country.img ? <img src={country.img} width='430px' height='220px' alt={country.name} className={styles.img}/> 
+       : <img src={giphy} alt='Loading' className={styles.img} width='430' height='350px'/>  }
         <h3 className={styles.titleone}>{country.name}</h3>
         <p className={styles.letter}><strong>ID : </strong>{country.id}</p>
         <p className={styles.letter}><strong>Capital : </strong>{country.capital}</p>
@@ -39,14 +51,16 @@ const CountryDetails = () => {
         
 
         </div>
+  
         {country.activities?.map((e)=>
-        <ActivityCard
-          name={e.name} 
-          difficult={e.difficult} 
-          duration={e.duration}
-          season={e.season}
-          key={e.id}
-        /> )}
+        
+       <ActivityCard
+        name={e.name} 
+        difficult={e.difficult} 
+        duration={e.duration}
+        season={e.season}
+        key={e.id}
+      /> ) }
       
     </div>
        

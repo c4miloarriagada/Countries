@@ -14,7 +14,7 @@ import styles from './Home.module.css';
 import Paginated from "./Paginated";
 import Nav from './Nav'
 //import LisActivities from './LisActivities'
-//import giphy from '../assets/giphy.gif'
+import giphy from '../assets/giphy.gif'
 
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
     const allCountries = useSelector((state) => state.countries);
     const activities = useSelector((state) => state.activities)
     const [order, setOrder] = useState('')
-    //const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1);
     const [countriesPerPage, /*setCountriesPerPage*/] = useState(10);
     const indexOfLastCountry = currentPage * countriesPerPage;
@@ -74,7 +74,10 @@ export default function Home() {
     const handleReload = () => {
         window.location.reload();
       };
-
+    
+if(currentCountry && loading){
+        setLoading(false)
+    }  
 //  const nextPage = ()=>{
 //     if (currentPage < Math.ceil(allCountries.length / countriesPerPage)){
 //           setCurrentPage(currentPage + 1)
@@ -85,9 +88,7 @@ export default function Home() {
 //           setCurrentPage(currentPage - 1)
 //       }
 //   }
-//  if(currentCountry && loading){
-//   setLoading(false)
-//  }  
+ 
 
 //   const handleClickPopulation = (e) => {
 //         dispatch(filterByPopulationCondition())
@@ -136,8 +137,10 @@ return (
                     <select onChange={e => handleFilterByActivity(e)}className={styles.select}>
                         <option hidden value='All'>All Activities</option>
                         {activities?.map(e => (
+                            
                             <option value={e.name}
-                                    key={e.id}> {e.name} </option>
+                                    key={e.id}> {e.name} 
+                            </option>
                         ))}
                     </select>
                     </div>
@@ -148,8 +151,8 @@ return (
            
                 <ul className={styles.container}>
 
-                {/*loading ? <img src={giphy} alt='Loading' className={styles.gif} width='500px' height='500px'/>:*/
-                 currentCountry &&  currentCountry.map(e => (
+                {  currentCountry.length > 0 && !loading ? 
+                    currentCountry.map(e => (
                         <CountryCard
                             name={e.name}
                             continent={e.continent}
@@ -157,9 +160,10 @@ return (
                             subregion={e.subregion}
                             id={e.id}
                             key={e.id}
-                    />
-                    ))
-                }
+                    /> 
+                    )
+                )
+                : <img src={giphy} alt='Loading' className={styles.gif} width='500px' height='500px'/> }
                 </ul>
             
             </div>
