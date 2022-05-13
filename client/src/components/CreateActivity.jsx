@@ -48,9 +48,9 @@ const CreateActivity = () => {
 
     function handleSubmit(e) {
          console.log(input)
-         if (input.name.length < 3 || !input.difficult || !input.duration || !input.season || input.country.length === 0 ) {
+         if (input.name.length < 3 || !input.name.match( (/^[A-Za-z]+$/)) || !input.difficult || !input.duration || !input.season || input.country.length === 0 ){
              e.preventDefault()
-            alert('All inputs must contain valid information')
+            alert('All fields must be completed')
         } else {
             e.preventDefault()
             dispatch(postActivity(input))
@@ -77,6 +77,8 @@ const CreateActivity = () => {
         let error = {};
         if(input.name.length < 3){
             error.name = 'Name of activity must be valid'
+        }if(!input.name.match( (/^[A-Za-z]+$/))){
+            error.name = 'Name of activity must contain only letters'
         }
         if(!input.duration){
             error.duration = 'Duration must be specified in hours'
@@ -86,9 +88,6 @@ const CreateActivity = () => {
         }
         if(!input.difficult){
             error.difficult = 'Difficult is required'
-        }
-        if(input.country.length === 0){
-            error.country = 'At least one country must be selected'
         }
         return error
     }
@@ -235,7 +234,7 @@ const CreateActivity = () => {
                         </ul>
                     )}
                     <div >
-                        <input type='submit' value='Create'/>
+                        <input type='submit' value='Create' disabled={Object.keys(error).length} />
                     </div>
                 </div>
             </form>
