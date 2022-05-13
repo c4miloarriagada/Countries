@@ -47,6 +47,7 @@ const CountryDetails = () => {
         <p className={styles.letter}><strong>Area : </strong>{country.area} km²</p>
         <p className={styles.letter}><strong>Population : </strong>{country.population}</p>
         
+        
 
         </div>
   
